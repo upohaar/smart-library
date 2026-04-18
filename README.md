@@ -115,3 +115,43 @@ Light/Dark থিম টগল করা যায়, পছন্দ সেভ
 
 API এরর হলে অটো ৩ বার রিট্রাই করে
 তারপরেও না হলে Retry বাটন দেখায়
+
+
+
+
+
+Frontend Framework
+
+React.js — পুরো UI বানাতে ব্যবহার করেছি
+Routing
+
+React Router DOM — পেজ নেভিগেশনের জন্য (Home, Login, Favorites, Borrowed, Dashboard)
+Styling
+
+Tailwind CSS — সব ডিজাইন ও responsive layout এর জন্য
+Dark Mode — Tailwind এর class-based dark mode
+State Management
+
+React Context API — global state (user, favorites, borrowed, theme, points) manage করতে
+Custom Hooks
+
+useGoogleBooks — API call ও caching
+useDebounce — search input delay
+useLocalStorage — browser storage
+External API
+
+Google Books API — বইয়ের ডেটা, কভার, রেটিং আনতে
+Data Persistence
+
+localStorage — user data browser এ save রাখতে (login, favorites, borrowed, points)
+Performance Optimization
+
+Debouncing — বারবার API call কমাতে
+In-memory Caching — একই query বারবার API hit না করতে
+useMemo / useCallback — unnecessary re-render কমাতে
+Gamification
+
+নিজে বানানো points ও badge system (বই favor করলে/ধার নিলে পয়েন্ট)
+Build Tool
+
+Create React App (CRA) — project setup ও build এর জন্য
