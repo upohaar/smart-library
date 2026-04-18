@@ -1,13 +1,53 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Base layer for smooth theme transitions */
+@layer base {
+  * {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
 }
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+/* Staggered fade-in for recommendation book cards */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rec-card-enter {
+  animation: fadeSlideUp 0.5s ease both;
+}
+.rec-card-enter:nth-child(1) { animation-delay: 0.05s; }
+.rec-card-enter:nth-child(2) { animation-delay: 0.10s; }
+.rec-card-enter:nth-child(3) { animation-delay: 0.15s; }
+.rec-card-enter:nth-child(4) { animation-delay: 0.20s; }
+.rec-card-enter:nth-child(5) { animation-delay: 0.25s; }
+.rec-card-enter:nth-child(6) { animation-delay: 0.30s; }
+.rec-card-enter:nth-child(7) { animation-delay: 0.35s; }
+.rec-card-enter:nth-child(8) { animation-delay: 0.40s; }
