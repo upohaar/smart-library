@@ -12,6 +12,7 @@ const AppContext = createContext(null);
  * - borrowed (list of borrowed books with timestamps)
  * - theme (dark / light)
  * - points & badge (gamification)
+ * - comments (user comments)
  */
 export const AppProvider = ({ children }) => {
   // --- Auth state ---
@@ -36,6 +37,13 @@ export const AppProvider = ({ children }) => {
   const [points, setPoints] = useState(() =>
     getFromStorage(STORAGE_KEYS.POINTS, 0)
   );
+
+  // --- NEW: Comments ---
+  const [comments, setComments] = useState(() =>
+    getFromStorage('COMMENTS', [])   // using a simple key; you can add to STORAGE_KEYS if you prefer
+  );
+  // Optional: loading flag (set to false after initial load, but you can keep it simple)
+  const [loading, setLoading] = useState(false); // comments load immediately, no async
 
   // Apply dark class to <html> whenever theme changes
   useEffect(() => {
@@ -62,6 +70,11 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     saveToStorage(STORAGE_KEYS.POINTS, points);
   }, [points]);
+
+  // Persist comments whenever they change
+  useEffect(() => {
+    saveToStorage('COMMENTS', comments);
+  }, [comments]);
 
   // ----- Auth actions -----
   const login = useCallback((username, password) => {
@@ -139,6 +152,19 @@ export const AppProvider = ({ children }) => {
     setTheme((t) => (t === 'light' ? 'dark' : 'light'));
   }, []);
 
+  // ----- NEW: Comment actions -----
+  const addComment = useCallback((text) => {
+    if (!text.trim()) return;
+    const newComment = {
+      id: Date.now(),
+      text: text.trim(),
+      date: new Date().toISOString(),
+    };
+    setComments((prev) => [newComment, ...prev]);
+    // Optional: award points for commenting (e.g., 5 points)
+    // setPoints((p) => p + 5);
+  }, []);
+
   // Derive current badge from points
   const badge = getCurrentBadge(points);
 
@@ -157,6 +183,10 @@ export const AppProvider = ({ children }) => {
     toggleTheme,
     points,
     badge,
+    // NEW exports for comments
+    comments,
+    addComment,
+    loading,   // false (comments are loaded synchronously)
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

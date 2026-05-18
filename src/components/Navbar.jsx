@@ -18,6 +18,7 @@ const Navbar = () => {
     { to: '/', label: '🏠 Home' },
     { to: '/favorites', label: `❤️ Favorites (${favorites.length})` },
     { to: '/borrowed', label: `📖 Borrowed (${borrowed.length})` },
+    { to: '/comments', label: '💬 Comments' },                     // 👈 NEW link
     ...(user ? [{ to: '/dashboard', label: '📊 Dashboard' }] : []),
   ];
 

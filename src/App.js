@@ -14,6 +14,7 @@ import FavoritesPage  from './pages/FavoritesPage';
 import BorrowedPage   from './pages/BorrowedPage';
 import DashboardPage  from './pages/DashboardPage';
 import LoginPage      from './pages/LoginPage';
+import CommentsPage   from './pages/CommentsPage';   // 👈 NEW import
 
 /**
  * App — root component.
@@ -35,6 +36,7 @@ function App() {
               <Route path="/borrowed"    element={<BorrowedPage />} />
               <Route path="/dashboard"   element={<DashboardPage />} />
               <Route path="/login"       element={<LoginPage />} />
+              <Route path="/comments"    element={<CommentsPage />} />  {/* 👈 NEW route */}
 
               {/* 404 fallback */}
               <Route
