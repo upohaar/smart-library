@@ -42,8 +42,6 @@ export const AppProvider = ({ children }) => {
   const [comments, setComments] = useState(() =>
     getFromStorage('COMMENTS', [])   // using a simple key; you can add to STORAGE_KEYS if you prefer
   );
-  // Optional: loading flag (set to false after initial load, but you can keep it simple)
-  const [loading, setLoading] = useState(false); // comments load immediately, no async
 
   // Apply dark class to <html> whenever theme changes
   useEffect(() => {
